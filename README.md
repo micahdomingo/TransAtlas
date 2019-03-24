@@ -1,1 +1,1 @@
-# TransAtlas
+A map of Resources in New York City related to Trans health and wellness.
