@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TransAtlas - Connecting Transgender and Non-Binary people to competent resources</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <h1>
+      TransAtlas 
+    </h1>
+
+    <!-- Load Leaflet CSS -->
+    <link href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- Load our styles -->
+    <link href="./styles.css" rel="stylesheet">
+  </head>
+  <body>
+   
+    <div class="overlay">
+     <form class="search">
+  <input type="text" id="search" placeholder="Search..." name="search" class="searchInput">
+       <button type="button" id="submit" class="submit"><i class="fa fa-search"></i></button><button type="button" id="clear" class="clear-button"><i class="fa fa-eraser"></i></button> 
+</form>
+    </div>
+    <div class="mapwrapper">
+       <div id="map"></div>
+    
+       
+    
+    <div class="not-phone">
+      
+      
+    <div class="overlay2">
+      <ul class="service-picker">
+        <li class="advocacy">
+          <input class="service-checkbox" type="checkbox" id="advocacy" data-service="Advocacy and Activism" />
+          <label for="advocacy">Advocacy and Activism</label>
+        </li>
+        <li class="alt">
+           <input class="service-checkbox" type="checkbox" id="alt" data-service="Alternative Medicine" />
+          <label for="alt">Alternative Medicine</label>
+        </li>
+        <li class="elders">
+           <input class="service-checkbox" type="checkbox" id="elders" data-service="Elders" />
+          <label for="elders">Elders</label>
+        </li>
+        <li class="hair">
+           <input class="service-checkbox" type="checkbox" id="hair" data-service="Electrolysis and Laser Hair Removal" />
+          <label for="hair">Electrolysis and Laser Hair Removal</label>
+        </li>
+        <li class="hiv">
+           <input class="service-checkbox" type="checkbox" id="hiv" data-service="HIV Services" />
+          <label for="hiv">HIV Services</label>
+        </li>
+        <li class="house">
+           <input class="service-checkbox" type="checkbox" id="house" data-service="Housing Services" />
+          <label for="house">Housing Services</label>
+        </li>
+        <li class="legal">
+           <input class="service-checkbox" type="checkbox" id="legal" data-service="Legal Assistance" />
+          <label for="legal">Legal Assistance</label>
+        </li>
+        <li class="medical">
+           <input class="service-checkbox" type="checkbox" id="medical" data-service="Medical and Health" />
+          <label for="medical">Medical and Health</label>
+        </li>
+        <li class="mh">
+           <input class="service-checkbox" type="checkbox" id="mh" data-service="Mental Health and Addiction Support" />
+          <label for="mh">Mental Health and Addiction Support</label>
+        </li>
+        <li class="religious">
+           <input class="service-checkbox" type="checkbox" id="religious" data-service="Religious" />
+          <label for="religious">Religious</label>
+        </li>
+        <li class="repro">
+           <input class="service-checkbox" type="checkbox" id="repro" data-service="Reproductive Services" />
+          <label for="repro">Reproductive Services</label>
+        </li>
+        <li class="sex">
+           <input class="service-checkbox" type="checkbox" id="sex" data-service="Sexual Health Services" />
+          <label for="sex">Sexual Health Services</label>
+        </li>
+        <li class="social">
+           <input class="service-checkbox" type="checkbox" id="social" data-service="Social and Supportive Services" />
+          <label for="social">Social and Supportive Services</label>
+        </li>
+        <li class="speech">
+           <input class="service-checkbox" type="checkbox" id="speech" data-service="Speech Therapy" />
+          <label for="speech">Speech Therapy</label>
+        </li>
+        <li class="surgeon">
+           <input class="service-checkbox" type="checkbox" id="surgeon" data-service="Surgeon" />
+          <label for="surgeon">Surgeon</label>
+        </li>
+        <li class="youth">
+           <input class="service-checkbox" type="checkbox" id="youth" data-service="Youth" />
+          <label for="youth">Youth</label>
+        </li>
+      </ul> 
+    
+    </div>
+     
+      </div>
+      
+    </div>
+    
+    <div class="only-phone">
+      
+      <select class="service-dropdown">
+        <option>Select a Service</option>
+        <option value="Advocacy and Activism">Advocacy and Activism</option>
+        <option value="Alternative Medicine">Alternative Medicine</option>
+        <option value="Elders">Elders</option>
+        <option value="Electrolysis and Laser Hair Removal">Electrolysis and Laser Hair Removal</option>
+        <option value="HIV Services">HIV Services</option>
+        <option value="Housing Services">Housing Services</option>
+        <option value="Legal Assistance">Legal Assistance</option>
+        <option value="Medical and Health">Medical and Health</option>
+        <option value="Mental Health and Addiction Support">Mental Health and Addiction Support</option>
+        <option value="Religious">Religious</option>
+        <option value="Sexual Health Services">Sexual Health Services</option>
+        <option value="Social and Supportive Services">Social and Supportive Services</option>
+        <option value="Speech Therapy">Speech Therapy</option>
+        <option value="Surgeon">Surgeon</option>
+      
+      </select>
+    
+      
+    </div>
+     
+       
+        <div class="sidebar">
+      <div class="sidebar-content">
+
+    <script class="popup-template" type="x-templ-mustache">
+      <div>
+      <div class="organization"><a class="org" href="{{Website}}" target="_blank">{{organization}}</a></div>
+      <div class="address">{{address}} || {{Phone}}</div>
+      <div class="service">{{service_type}}, {{other_srvc_type}}</div>
+      <div class="description">{{services_offered}}</div>
+    </div>
+    </script>    
+    </div>
+    
+    </div>
+    <div class="email">
+       Questions, Comments, Feedback? <a class="emailaddress" href="mailto: thetransatlas@gmail.com">Email us!</a>
+      <div>
+       
+      </div>
+<!--       <button type="button" id="exportReportButton" class="download-button"><i class="fa fa-download"></i></button> -->
+      </div>
+     
+   
+    <!-- Load Leaflet library -->
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
+    
+    <!-- Load Promises polyfill -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
+    
+    <!-- Load Fetch polyfill -->
+    <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@2.0.4/fetch.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.0/mustache.min.js"></script>
+
+    <!-- Load our JavaScript -->
+    <script src="./script.js"></script> 
+       
+  </body>
+</html>
